@@ -7,7 +7,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
+import BestBooks from './BestBooks';
+import Profile from './Profile';
 class App extends React.Component {
 
   constructor(props) {
@@ -38,10 +39,16 @@ class App extends React.Component {
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
             </Route>
+            <Route exact path="/profile">
+            <Profile/>
+              {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+            </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
           </Switch>
           <Footer />
         </Router>
+        <BestBooks/>
+
       </>
     )
   }

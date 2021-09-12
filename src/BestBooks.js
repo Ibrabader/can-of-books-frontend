@@ -1,4 +1,6 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
+import axios from 'axios';
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -9,20 +11,52 @@ class BestBooks extends React.Component {
   }
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
+  componentDidMount = () => {
+  
 
+    axios.get(`${process.env.REACT_APP_API_URL}/books`).then((booksResponse) => {
+
+      this.setState({ books: booksResponse.data });
+    }).catch(error => alert(error.message));
+
+
+  }
   render() {
 
-    /* TODO: render user's books in a Carousel */
+     /* TODO: render user's books in a Carousel */
 
     return (
-      <>
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
-        {this.state.books.length ? (
-          <p>Book Carousel coming soon</p>
-        ) : (
-          <h3>No Books Found :(</h3>
-        )}
+
+      <>
+        {
+          this.state.books.length > 0 &&
+          <>
+            {
+              this.state.books.map(book => {
+                return (
+                  <>
+                    <Card style={{ width: '18rem' }}>
+                      
+                      <Card.Body>
+                        <Card.Title>{book.title}</Card.Title>
+                        <Card.Text>
+                          {book.status}
+                        </Card.Text>
+                        <Card.Text>
+                          {book.description}
+                        </Card.Text>
+                        <Card.Text>
+                          {book.email}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </>
+                )
+              })
+            }
+          </>
+        }
       </>
     )
   }
