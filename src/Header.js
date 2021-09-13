@@ -12,6 +12,9 @@ class Header extends React.Component {
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
         <NavItem><Link to="/profile" className="nav-link">Profile</Link></NavItem>
+        <NavItem><button type="button" >Log in</button></NavItem>
+        <NavItem><button type="button">Log out</button></NavItem>
+        
         {/* TODO: if the user is logged in, render a navigation link to profile page */}
         {/* TODO: if the user is logged in, render the `LogoutButton` */}
       </Navbar>
