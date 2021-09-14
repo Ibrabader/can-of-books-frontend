@@ -2,7 +2,6 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 require('dotenv').config();
-
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
@@ -10,42 +9,23 @@ class BestBooks extends React.Component {
       books: []
     }
   }
-
-  /* TODO: Make a GET request to your API to fetch books for the logged in user  */
   componentDidMount = () => {
-  
-
     axios.get(`${process.env.REACT_APP_API_URL}/books`).then((booksResponse) => {
-
-      this.setState({ books: booksResponse.data }); 
-     
+      this.setState({ books: booksResponse.data });
     })
-    console.log('reseve response'+this.state.books);
-
-    // .catch(error => alert(error.message));
-
-
+    console.log('receive response' + this.state.books);
   }
-
-  
   render() {
-
-     /* TODO: render user's books in a Carousel */
-
     return (
-
-
-       <>
-        {/* {
-          this.state.books.length > 0 && */}
+      <>
+        {
+          this.state.books.length > 0 &&
           <>
             {
               this.state.books.map(book => {
                 return (
                   <>
-        
                     <Card style={{ width: '18rem' }}>
-                      
                       <Card.Body>
                         <Card.Title>{book.title}</Card.Title>
                         <Card.Text>
@@ -64,7 +44,7 @@ class BestBooks extends React.Component {
               })
             }
           </>
-        {/* } */}
+        }
       </>
     )
   }
