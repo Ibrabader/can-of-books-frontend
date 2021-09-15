@@ -23,7 +23,7 @@ export class Books extends Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-      email: e.target.email.value,
+      email: this.props.auth0.user.email
       // book_img: e.target.bookImage.value,
     }
 
