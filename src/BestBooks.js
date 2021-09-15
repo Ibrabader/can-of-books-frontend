@@ -11,12 +11,11 @@ class BestBooks extends React.Component {
   }
   componentDidMount = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/books`).then((booksResponse) => {
-      this.setState({ books: booksResponse.data });
-    })
-    console.log('receive response' + this.state.books);
+
   }
   render() {
     return (
+
       <>
         {
           this.state.books.length > 0 &&
