@@ -6,6 +6,7 @@ import AddBook from './AddBook';
 import UpdateModel from './UpdateBooks';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { withAuth0 } from '@auth0/auth0-react';
 export class Books extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ export class Books extends Component {
       title: e.target.title.value,
       description: e.target.description.value,
       status: e.target.status.value,
-      email: e.target.email.value,
+      email: this.props.auth0.user.email
       // book_img: e.target.bookImage.value,
     }
 
@@ -86,7 +87,7 @@ export class Books extends Component {
       this.setState({ showAddModal: !this.state.showAddModal });
     }
     componentDidMount = () => {
-      axios.get(`${process.env.REACT_APP_API_URL}/Books`).then((BookResponse) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/Books/${this.props.auth0.user.email}`).then((BookResponse) => {
         this.setState({ BooksData: BookResponse.data });
         // console.log('hwllo from get ');
       }).catch(error => alert(' get message'));
@@ -160,4 +161,4 @@ export class Books extends Component {
     }
   }
 
-export default Books;
+export default  withAuth0(Books);
