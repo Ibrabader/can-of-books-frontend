@@ -3,7 +3,9 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import AddBook from './AddBook';
-import UpdateModel from './UpdateBooks'
+import UpdateModel from './UpdateBooks';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 export class Books extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ export class Books extends Component {
       description: e.target.description.value,
       status: e.target.status.value,
       email: e.target.email.value,
+      // book_img: e.target.bookImage.value,
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/Books`, reqBody).then(createdBookObject => {
@@ -43,7 +46,8 @@ export class Books extends Component {
       title: e.target.bookName.value,
       description: e.target.bookdescription.value,
       status: e.target.bookstatus.value,
-      email: e.target.useremail.value
+      email: e.target.useremail.value,
+      // book_img: e.target.bookImage.value,
     }
 
     axios.put(`${process.env.REACT_APP_API_URL}/books/${this.state.bookSelectedData._id}`,reqBodyUpdate).then(updatedBookObject => {
@@ -116,11 +120,15 @@ export class Books extends Component {
           }
           {
           this.state.BooksData.length > 0 &&
+         
             <>
-              {this.state.BooksData.map(Book => {
+             <Row>
+              {this.state.BooksData.map((Book,idx) => {
                 return (
                   <>
+                    <Col md={4} key={idx}>
                     <Card style={{ width: '18rem' }}>
+                    {/* <Card.Img variant="top" src={book.book_img} /> */}
                       <Card.Body>
                         <Card.Title>{Book.title}</Card.Title>
                         <Card.Text>
@@ -133,13 +141,18 @@ export class Books extends Component {
                           {Book.email}
                         </Card.Text>
                         <Button variant="danger" onClick={() => this.handelDeleteBook(Book._id)}>Delete Book</Button>
+                        <br />
+                        <br/>
                         <Button variant="warning" onClick={()=> this.handelDisplayUpateModal(Book)}>Update Book</Button>
                       </Card.Body>
                     </Card>
+                    </Col>
                   </>
                 )
               })
               }
+         
+               </Row>
             </>
           }
         </div>
