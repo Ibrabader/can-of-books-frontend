@@ -24,7 +24,6 @@ export class Books extends Component {
       description: e.target.description.value,
       status: e.target.status.value,
       email: this.props.auth0.user.email
-      // book_img: e.target.bookImage.value,
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/Books`, reqBody).then(createdBookObject => {
@@ -87,7 +86,7 @@ export class Books extends Component {
       this.setState({ showAddModal: !this.state.showAddModal });
     }
     componentDidMount = () => {
-      axios.get(`${process.env.REACT_APP_API_URL}/Books/${this.props.auth0.user.email}`).then((BookResponse) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/Books?email=${this.props.auth0.user.email}`).then((BookResponse) => {
         this.setState({ BooksData: BookResponse.data });
         // console.log('hwllo from get ');
       }).catch(error => alert(' get message'));
