@@ -47,11 +47,11 @@ export class Books extends Component {
     }
 
     axios.put(`${process.env.REACT_APP_API_URL}/books/${this.state.bookSelectedData._id}`,reqBodyUpdate).then(updatedBookObject => {
-      const updatedBooksArr = this.state.booksData.map(book => {
+      const updatedBooksArr = this.state.BooksData.map(book => {
         if (this.state.bookSelectedData._id === book._id) {
 
-          book = updatedBookObject.data
-          return book
+          book = updatedBookObject.data;
+          return book;
           
         }
         return book;
@@ -60,9 +60,10 @@ export class Books extends Component {
         booksData: updatedBooksArr,
         bookSelectedData: {},
       })
+      // console.log(this.state.updatedBooksArr);
       this.handelDisplayUpateModal();
     })
-    .catch(() => alert('Somthing went wrong'));
+    .catch((error) => alert(error.message));
 
 
 
