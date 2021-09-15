@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -12,7 +13,7 @@ export class AddBook extends Component {
           <Modal.Title>Add a Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={this.props.handelAddModal}>
+          <Form show={this.props.show} onSubmit={this.props.handelAddModal}>
             <Form.Group className="mb-3">
               <Form.Label>Book Title</Form.Label>
               <Form.Control type="text" name="title" placeholder="Enter Book title" />
