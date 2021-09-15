@@ -14,7 +14,7 @@ export class UpdateModel extends Component {
               <Modal.Title>Update Book</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form show={this.props.show} onSubmit={this.props.handelUpdateModal}>
+              <Form  onSubmit={this.props.handelUpdateModal}>
                 <Form.Group className="mb-3">
                   <Form.Label>Title</Form.Label>
                   <Form.Control type="text" name="bookName" placeholder="Enter Book Name" defaultValue= {this.props.bookSelectedData.title} />
