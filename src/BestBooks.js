@@ -18,16 +18,11 @@ class BestBooks extends React.Component {
     axios.get(`${process.env.REACT_APP_API_URL}/books`).then((booksResponse) => {
 
       this.setState({ books: booksResponse.data }); 
-     
-    })
-    console.log('reseve response'+this.state.books);
-
-    // .catch(error => alert(error.message));
+      console.log('reseve response');
+    }).catch(error => alert(error.message));
 
 
   }
-
-  
   render() {
 
      /* TODO: render user's books in a Carousel */
@@ -35,15 +30,14 @@ class BestBooks extends React.Component {
     return (
 
 
-       <>
-        {/* {
-          this.state.books.length > 0 && */}
+      <>
+        {
+          this.state.books.length > 0 &&
           <>
             {
               this.state.books.map(book => {
                 return (
                   <>
-        
                     <Card style={{ width: '18rem' }}>
                       
                       <Card.Body>
@@ -64,7 +58,7 @@ class BestBooks extends React.Component {
               })
             }
           </>
-        {/* } */}
+        }
       </>
     )
   }
