@@ -48,7 +48,7 @@ export class Books extends Component {
 
     axios.put(`${process.env.REACT_APP_API_URL}/books/${this.state.bookSelectedData._id}`,reqBodyUpdate).then(updatedBookObject => {
       const updatedBooksArr = this.state.BooksData.map(book => {
-        if (this.state.bookSelectedData._id === book._id) {
+        if (book._id === this.state.bookSelectedData._id ) {
 
           book = updatedBookObject.data;
           return book;
@@ -57,10 +57,9 @@ export class Books extends Component {
         return book;
       })
       this.setState({
-        booksData: updatedBooksArr,
+        BooksData: updatedBooksArr,
         bookSelectedData: {},
       })
-      // console.log(this.state.updatedBooksArr);
       this.handelDisplayUpateModal();
     })
     .catch((error) => alert(error.message));
@@ -71,10 +70,10 @@ export class Books extends Component {
   }
 
 
-  handelDisplayUpateModal = (book) => {
+  handelDisplayUpateModal = (Book) => {
     this.setState({
         showUpdateModal: !this.state.showUpdateModal,
-        bookSelectedData: book
+        bookSelectedData: Book
     })
 
 } 
